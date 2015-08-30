@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta id="token" name="token" value="{{ csrf_token() }}">
     <title>Laravel Cards</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Source+Code+Pro:300" rel="stylesheet" type="text/css">
@@ -31,18 +32,25 @@
         <h1 class="display-2 text-center">Laravel Cards</h1>
     </div>
 
-    <div class="card-columns">
-        @foreach ( $cards as $card )
-        <div class="card card-block card-inverse text-center" style="background-image: {{ $card->image }}">
-            <div class="card-block">
-                <h2 class="card-title text-fixed-width">{{ $card->card_id }}</h2>
-                <h4 class="card-text">{{ $card->title }}</h4>
-                <p class="card-text">{{ $card->body }}</p>
-            </div>
+    <div id="cards" class="card-columns">
+
+        <div v-repeat="cards" class="card card-block card-inverse text-center" style="background-image: @{{ image }}">
+        <div class="card-block">
+        <h2 class="card-title text-fixed-width">@{{ card_id }}</h2>
+        <h4 class="card-text">@{{ title }}</h4>
+        <p class="card-text">@{{ body }}</p>
         </div>
-        @endforeach
+        </div>
+
+        <div class="navigation">
+           @{{ next }}
+        </div>
     </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.12/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.14/vue-resource.min.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

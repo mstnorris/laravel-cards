@@ -12,8 +12,10 @@ class PagesController extends Controller
 {
     public function welcome()
     {
-        $cards = Card::all();
+        //$cards = Card::all();
 
-        return view('welcome', compact('cards'));
+        //return view('welcome', compact('cards'));
+
+        return view('welcome');
     }
 }
