@@ -25,16 +25,23 @@
         }
     </style>
 </head>
-<body>
+<body id="cards">
 <div class="container-fluid">
 
     <div class="row">
         <h1 class="display-2 text-center">Laravel Cards</h1>
     </div>
 
-    <div id="cards" class="card-columns">
+    <div class="row">
+        <div class="col-sm-12">
+        <div class="form-group">
+        <input type="text" class="form-control" id="query" v-model="query" name="query">
+        </div>
+        </div>
+    </div>
+    <div class="card-columns">
 
-        <div v-repeat="cards" class="card card-block card-inverse text-center" style="background-image: @{{ image }}">
+        <div v-repeat="cards | filterBy query" class="card card-block card-inverse text-center" style="background-image: @{{ image }}">
         <div class="card-block">
         <h2 class="card-title text-fixed-width">@{{ card_id }}</h2>
         <h4 class="card-text">@{{ title }}</h4>

@@ -4,34 +4,29 @@ new Vue({
     el: '#cards',
 
     data: {
-        'i': 1
+        'query': '',
+        'i': 1,
+        url: 'http://laravel-cards.dev/cards',
+        cards: []
     },
 
     ready: function() {
         this.fetchCards();
         $(window).scroll(function(){
-            if($(window).scrollTop() == $(document).height() - $(window).height())
+            if($(window).scrollTop() == $(document).height() - $(window).height() -50 )
             {
-                $.ajax({
-                    url: $('.navigation').html(),
-                    success: function(data)
-                    {
-                        if(data)
-                        {
-                            this.$set('cards', data.data);
-                            console.log(data);
-                        }
-                    }
-                });
+                console.log(this.current);
+                console.log(this.url);
+                this.fetchCards();
             }
-        });
+        }.bind(this));
     },
 
     methods: {
         fetchCards: function() {
-            this.$http.get('cards', function(cards) {
+            this.$http.get(this.$get('url'), function(cards) {
                 this.$set('cards', cards.data);
-                this.$set('next', cards.next_page_url);
+                this.$set('url', cards.next_page_url);
                 this.$set('current', cards.current_page);
             })
         }
