@@ -23,6 +23,14 @@
         .text-fixed-width {
             font-family: 'Source Code Pro', monospace;
         }
+
+        .fade-transition {
+            transition: all .5s ease;
+            opacity: 1;
+        }
+        .fade-enter, .fade-leave {
+            opacity: 0;
+        }
     </style>
 </head>
 <body id="cards">
@@ -41,7 +49,7 @@
     </div>
     <div class="card-columns">
 
-        <div v-repeat="cards | filterBy query" class="card card-block card-inverse text-center" style="background-image: @{{ image }}">
+        <div v-repeat="cards | filterBy query" v-transition="fade" class="card card-block card-inverse text-center" style="background-image: @{{ image }}">
         <div class="card-block">
         <h2 class="card-title text-fixed-width">@{{ card_id }}</h2>
         <h4 class="card-text">@{{ title }}</h4>
